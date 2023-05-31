@@ -118,7 +118,7 @@ public class Dumper {
         void flush() throws IOException {
             if (isFile) {
                 outputStream.flush();
-            } else {
+            } else if (buffer.size() > 0) {
                 collection.insertMany(buffer, new InsertManyOptions().ordered(false));
                 buffer.clear();
             }
